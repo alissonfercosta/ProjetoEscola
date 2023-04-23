@@ -35,12 +35,29 @@ def ExecutaMenu(opcao):
     
     elif(int(opcao) == 5):
         CalculoMedia()
+        
+    elif(int(opcao) == 6):
+        importAlunos = ImportaAlunosCSV()
+        for tmpAluno in importAlunos:
+            Alunos.append(tmpAluno)
     
-    elif(int(opcao) > 5):
+    elif(int(opcao) == 7):        
+        ExportaAlunosCSV(Alunos)
+     
+    elif(int(opcao) == 8):
+        importAlunos = ImportaAlunosJSON()    
+        for tmpAluno in importAlunos:
+            Alunos.append(tmpAluno)
+    
+    elif(int(opcao) == 9):        
+        ExportaAlunosJSON(Alunos)
+                
+    elif(int(opcao) > 9):
         print("Opção invalida!!")
         
     elif(int(opcao) == 0):
         os.system('cls')
         return False
     
+    os.system('cls')
     return True
