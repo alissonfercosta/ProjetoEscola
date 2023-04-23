@@ -2,6 +2,7 @@ from datetime import datetime
 import os
 from Models.Aluno import *
 import json
+from Utils.helper import *
 
 def CalculoMedia():
     os.system('cls')
@@ -24,7 +25,8 @@ def CalculoMedia():
     
     
 def ImportaAlunosCSV():
-    arquivo = open(r"C:\Users\Alisson\Documents\Codigos\_AUX\CSV\listaAlunos.csv", "r")
+    config = read_config()
+    arquivo = open(fr"{config['Arquivo']['CaminhoArquivoCSV']}", "r")
 
     next(arquivo)   
     
@@ -48,9 +50,10 @@ def ImportaAlunosCSV():
 def ExportaAlunosCSV(Alunos):    
     print("Iniciando exportação de Alunos para CSV. . .")
     
+    config = read_config()
     contador = 0
     dateTime = datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
-    nomeArquivo = fr"C:\Users\Alisson\Documents\Codigos\_AUX\CSV\Export\exportacao_alunos_{dateTime}.csv"
+    nomeArquivo = fr"{config['Arquivo']['CaminhoExtracaoCSV']}\exportacao_alunos_{dateTime}.csv"
     
     novoArquivo = open(nomeArquivo, "x")
     novoArquivo.write("Nome;Idade;Matricula;Serie\n")
@@ -66,7 +69,8 @@ def ExportaAlunosCSV(Alunos):
     
     
 def ImportaAlunosJSON():
-    arquivo = open(r"C:\Users\Alisson\Documents\Codigos\_AUX\JSON\listaAlunos.json", "r").read()
+    config = read_config()
+    arquivo = open(fr"{config['Arquivo']['CaminhoArquivoJSON']}", "r").read()
     
     arquivoJson = json.loads(arquivo)
     
@@ -87,9 +91,10 @@ def ImportaAlunosJSON():
 def ExportaAlunosJSON(Alunos):
     print("\nIniciando exportação de Alunos para CSV. . .\n")
     
+    config = read_config()
     contador = 0
     dateTime = datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
-    nomeArquivo = fr"C:\Users\Alisson\Documents\Codigos\_AUX\JSON\Export\exportacao_alunos_{dateTime}.json"
+    nomeArquivo = fr"{config['Arquivo']['CaminhoExtracaoJSON']}\exportacao_alunos_{dateTime}.json"
     novoArquivo = open(nomeArquivo, "x")
     
     novoArquivo.write("[\n")

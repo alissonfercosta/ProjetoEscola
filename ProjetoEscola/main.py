@@ -1,6 +1,6 @@
 import os
 from Utils.aprensetacoes import *
-from menu import *
+from Methods.menu import *
 
 ExibeInicio()
 
